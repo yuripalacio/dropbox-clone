@@ -111,13 +111,17 @@ export const DropboxLogo = styled(FaDropbox)`
 `;
 
 export const Content = styled.div`
+  --div-width: 100%;
+
   &.setImage {
-    --div-width: 50%;
     --div-display: block;
+
+    @media (min-width: 1024px) {
+      --div-width: 50%;
+    }
   }
 
   &.unsetImage {
-    --div-width: 100%;
     --div-display: none;
   }
 
@@ -127,12 +131,24 @@ export const Content = styled.div`
   margin: 0 auto;
 
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
   > .image {
     display: var(--div-display);
     width: var(--div-width);
-    margin: -150px 20px 0 50px;
+    margin-top: -150px;
+    margin-bottom: 20px;
+
+    @media (min-width: 1024px) {
+      margin-right: 20px;
+      margin-bottom: 0;
+      margin-left: 50px;
+    }
 
     > img {
       width: 100%;
@@ -142,7 +158,9 @@ export const Content = styled.div`
   > .content {
     width: var(--div-width);
 
-    padding: 20px 60px;
+    @media (min-width: 1024px) {
+      padding: 20px 60px;
+    }
 
     > h2 {
       font-size: var(--heading-font-size);
