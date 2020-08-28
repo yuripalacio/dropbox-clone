@@ -86,6 +86,8 @@ Dentro do arquivo src/components/SideMenu/styles.ts
 
 # Header
 
+<img alt="header" title="#header" src=".github/header.png">
+
 Para termos o efeito de mudança no cabeçalho tudo se resume na utilização `clip` fazendo com que os headers fiquem fixos em cada uma das suas respectivas sections e assim causando esse efeito.
 
 Dentro do arquivo src/components/Section/styles.ts
