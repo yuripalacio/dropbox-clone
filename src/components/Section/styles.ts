@@ -36,7 +36,7 @@ export const Container = styled.div`
     --heading-font-size: 51px;
 
     @media (min-width: 1024px) {
-      --content-with: 50%;
+      --content-width: 50%;
       --heading-font-size: 71px;
     }
   }
