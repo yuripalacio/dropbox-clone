@@ -1,44 +1,118 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+  <img src="https://cfl.dropboxstatic.com/static/images/index/rebrand/logos/glyphs/glyph_dark_blue.svg" class="DropboxLogo--glyph" alt="" role="presentation">
+  <img src="https://cfl.dropboxstatic.com/static/images/index/rebrand/logos/wordmarks/wordmark_black.svg" class="DropboxLogo--wordmark" alt="" role="presentation">
+</h1>
 
-## Available Scripts
+<h4 align="center"> 
+	Dropbox Clone
+</h4>
 
-In the project directory, you can run:
+<p align="center">	
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/yuripalacio/dropbox-clone">
 
-### `yarn start`
+  <a href="https://www.linkedin.com/in/yuripalacio/">
+    <img alt="Made by yuripalacio" src="https://img.shields.io/badge/made%20by-Yuri%20Palacio-%2304D361">
+  </a>
+  
+  <a href="https://github.com/yuripalacio/dropbox-clone/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/yuripalacio/dropbox-clone">
+  </a>
+  
+  <a href="https://github.com/yuripalacio/mychat/blob/master/LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
+  </a>
+</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p align="center">
+  <a href="#sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#menu">Menu</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#header">Header</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#referências">Referências</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#licença">Licença</a>
+</p>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# Sobre
 
-### `yarn test`
+O projeto **Dropbox Clone** foi desenvolvido com objeto de estudo ampliando os conhecimentos com desenvolvimento Front-End entendendo novas funcionalidades.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Nessa aplicação clonamos parte da interface do site e funcionalidades do [Dropbox](https://www.dropbox.com/pt_BR/) como o menu e o efeito de mudança do header.
 
-### `yarn build`
+<h1 align="center">
+  <img alt="main" title="#main" src=".github/project.png">
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  <img alt="header" title="#header" src=".github/header.png">
+</h1>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# Menu
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ao acessarmos o projeto, podemos verificar que o menu fica aberto a direita e conforme vamos "scrollando" a página ele some automaticamente.
+Para criarmos este efeito foi necessário criar uma função que captura a posição do scroll no eixo Y e a partir de um determinado ponto (no caso definimos como 300) é alterado o estado de uma variável fazendo com que o menu recue.
 
-### `yarn eject`
+Dentro do arquivo src/components/SideMenu/index.tsx
+``` typescript
+const scrollThreshold = 300; // Limite para o scroll
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+useEffect(() => {
+    function onScroll() {
+      setScrollY(window.scrollY);
+      setIsActive(false);
+    }
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    window.addEventListener('scroll', onScroll);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+ 
+ // Quando o scroll é inferior ao limite definido, setamos 'scrollOpen' a classe
+ const classes = [
+    isActive ? 'open' : '',
+    scrollY <= scrollThreshold ? 'scrollOpen' : '',
+  ];
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Dentro do arquivo src/components/SideMenu/styles.ts
+``` typescript
+@media (min-width: 1024px) {
+  &.scrollOpen {
+    transform: translateX(0);
+  }
 
-## Learn More
+  &.scrollOpen .action--close {
+    display: none;
+  }
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Header
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Para termos o efeito de mudança no cabeçalho tudo se resume na utilização `clip` fazendo com que os headers fiquem fixos em cada uma das suas respectivas sections e assim causando esse efeito.
+
+Dentro do arquivo src/components/Section/styles.ts
+``` typescript
+export const HeaderWrapper = styled.div`
+  ...
+  clip: rect(auto, auto, auto, auto);
+`;
+```
+
+# Tecnologias
+
+- [Yarn](https://yarnpkg.com/)
+- [React.js](https://pt-br.reactjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+# Referências
+
+<p>
+  https://www.youtube.com/watch?v=VqP1ECc_j4M
+<p>
+
+## Licença
+
+Esse projeto está sob a licença MIT. Veja o arquivo <a href="https://github.com/yuripalacio/dropbox-clone/blob/master/LICENSE">LICENSE</a> para mais detalhes.
+
+<hr />
+
+By [Yuri Palacio](https://www.linkedin.com/in/yuri-palacio/) :wave:
