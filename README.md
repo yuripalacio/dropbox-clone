@@ -18,7 +18,7 @@
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/yuripalacio/dropbox-clone">
   </a>
   
-  <a href="https://github.com/yuripalacio/mychat/blob/master/LICENSE">
+  <a href="https://github.com/yuripalacio/dropbox-clone/blob/master/LICENSE">
     <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
   </a>
 </p>
